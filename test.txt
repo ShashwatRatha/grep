@@ -1,0 +1,39 @@
+001: (DisMan) AI-Based early warning and landslide Risk Monitoring System in NER
+    - Basically wants us to build and train an AI model to recognise landslide-prone areas from data and photos
+        and make an alert system for the authorities
+    - Seems somewhat generic AI-slop stuff, bound to have actual work done on this by funded teams
+
+002: (SmAuto) AI-Based Smart Logistics and Accessibility Intelligence Platform for North Eastern Region (NER)
+    - Wants a system that will visualise terrain and will provide optimal routes to transfer logistics in NER
+    - GIS integrated and web/app platform enabled
+    - Seems the same as above, altho not sure abt the application part (as to how many folks have already worked on this)
+
+003: AI-Based Cognitive Gaming and Memory Assistance Platform for Elderly Dementia Patients in North Eastern Region (NER)
+    - A cognitive games interface for the old dementia patients
+    - Need to learn abt memory and other stuff
+    - AI to be used to assess current level and recommend exercises
+    - Really dislike this, dont think this is challenging/worth doing. also, there is a chance there would be a lot of slop in this
+
+004: AI-Assisted Early Detection System for Osteoarthritis (OA) Risk Markers in North Eastern Region (NER)
+    - Wants the solution to be a platform to analyse medical data to predict OA risk
+    - There has to be a platform to generate patient report and offline synchronisation
+    - again, i dont think health tach is our cup of tea
+
+005: Solar-Powered Smart Mini Cold Storage System for Fresh Vegetables in North Eastern Region (NER)
+    - fk this shit, not even reading it.
+
+006: Development of an Intelligent Freight Forecasting Model for Optimized Vessel Chartering and Bulk Cargo Procurement from overseas to East Coast of India
+    - SAIL imports bulk raw materials (especially coal/iron ore) through East Coast Indian ports, but vessel charter decisions are currently reactive because freight markets are volatile and there is no predictive system to determine when to charter, which vessel type to charter, which route/origin combination is optimal, how to avoid port delays and vessel idle time
+    - i think there is some overlap between quant market prediction shit and this
+    - Seems good, leaning on traditional ML.
+
+007: Safe and Efficient Operation of Mine Vehicles in Fog and Low-Visibility Conditions in Open Cast Iron Ore Mines
+    - This is like making aircraft safety system but for mining vehicles. not the same problem, so could have certain upsides
+    - I dont like this much but its somewhat good
+
+008: 
+
+Problem Statement: ISRO — On-Device Visual Perception for Light-Weight Browser Agents (SIH26171)
+Overview
+The objective of this problem statement is to build an autonomous, privacy-focused web browser agent that navigates and interacts with complex web applications purely using computer vision and on-device deep learning. Unlike traditional web scrapers that inspect HTML DOM structures (which break on dynamic sites and bot-protection layers), this agent operates like a human user—capturing live viewport screenshots, visually perceiving interactable UI elements, and executing actions directly on target pixel coordinates.
+Crucially, all model inference must run locally on the end-user’s device with minimal latency, eliminating reliance on expensive cloud vision APIs.
