@@ -28,6 +28,9 @@ typedef struct {
  *  Buffer curr_buf   : current in-memory buffer being processed
  *
  * sizeof(BufManager) = 32
+ *
+ * @notes:
+ *  always: file_off + rem_size = file_size
  * */
 
 typedef struct {
