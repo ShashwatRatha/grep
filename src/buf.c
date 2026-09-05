@@ -17,6 +17,9 @@ static Buffer create_buffer(const char *start, uint32_t len) {
   };
 }
 
+int32_t is_begin(BufManager *m) { return (m->file_off == 0); }
+int32_t is_end(BufManager *m) { return (m->rem_size == 0); }
+
 /*
  * create_buf_manager(const char *path, BufManager *m):
  *  @description:
@@ -61,7 +64,7 @@ void create_buf_manager(const char *path, BufManager *manager) {
     .fd = fd,
     .file_off = 0,
     .part_match = 0,
-    .rem_size = size,
+    .rem_size = size - map_size,
     .curr_buf = create_buffer((const char *)data, map_size)
   };
 }
@@ -73,7 +76,7 @@ void create_buf_manager(const char *path, BufManager *manager) {
  *    to match the given file offset
  *  @params:
  *   - m: BufManager to initialise
- *   - off: new file offset in bytes
+ *   - off: relative file offset in bytes
  *  @return:
  *    void
  *  @notes:
@@ -82,16 +85,36 @@ void create_buf_manager(const char *path, BufManager *manager) {
  * */
 void update_buf_position(BufManager *manager, int32_t offset) {
   if ((offset < 0 && manager->file_off + offset < 0)
-      || (offset >= 0 && offset >= manager->rem_size)) {
+      || (offset >= 0 && offset > manager->rem_size)) {
     dprintf(STDERR_FILENO, "Specified offset %d is out-of-bounds\n", offset);
     return;
   }
 
   manager->file_off += offset;
+  manager->rem_size -= offset;
 
   const char *new_buf_ptr = manager->curr_buf.start + offset;
-  const uint32_t new_buf_len =
-    (manager->rem_size >= MAX_BUFLEN ? MAX_BUFLEN : manager->rem_size);
+  const uint32_t new_buf_len = min(MAX_BUFLEN, manager->rem_size);
 
   manager->curr_buf = create_buffer(new_buf_ptr, new_buf_len);
+}
+
+void next_buf(BufManager *manager) {
+  if (is_end(manager)) {
+    dprintf(STDERR_FILENO, "Current buffer is end buffer, next buffer is invalid\n");
+    return;
+  }
+
+  int32_t req_off = min(MAX_BUFLEN, manager->rem_size);
+  update_buf_position(manager, req_off);
+}
+
+void prev_buf(BufManager *manager) {
+  if (is_begin(manager)) {
+    dprintf(STDERR_FILENO, "Current buffer is begin buffer, prev buffer is invalid\n");
+    return;
+  }
+
+  int32_t req_off = min(MAX_BUFLEN, manager->file_off);
+  update_buf_position(manager, -req_off);
 }
